@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Arteta — 21</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&family=Parisienne&display=swap');
+
+:root{
+  --cream:#f7f1e9;
+  --paper:#fffaf5;
+  --ink:#403a37;
+  --soft:#8f8177;
+  --rose:#b97978;
+  --rose2:#dca9a1;
+  --sage:#778675;
+  --gold:#c9a46a;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:"Cormorant Garamond",Georgia,serif;
+  overflow:hidden;
+}
+
+/* Ambient background */
+body:before, body:after{
+  content:"";
+  position:fixed;
+  width:430px;height:430px;
+  border-radius:50%;
+  filter:blur(65px);
+  pointer-events:none;
+  opacity:.25;
+}
+body:before{background:#e8c8bd;top:-180px;left:-150px}
+body:after{background:#cbd4c4;right:-180px;bottom:-190px}
+
+.deck{width:100vw;height:100vh;position:relative}
+
+.slide{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  overflow-y:auto;
+  transition:transform 1100ms cubic-bezier(.76,0,.16,1),opacity 800ms ease;
+  background:
+    linear-gradient(rgba(255,255,255,.18),rgba(255,255,255,.18)),
+    radial-gradient(circle at 50% 0%,rgba(255,255,255,.72),transparent 48%);
+}
+#opening{transform:translateY(0);opacity:1;z-index:2}
+#letter{transform:translateY(100%);opacity:0;z-index:1}
+.show-letter #opening{transform:translateY(-100%);opacity:0}
+.show-letter #letter{transform:translateY(0);opacity:1;z-index:3}
+
+/* Opening */
+.opening-inner{
+  min-height:100%;
+  width:min(900px,92%);
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  padding:40px 20px;
+}
+.opening-decoration{
+  position:absolute;
+  inset:7%;
+  border:1px solid rgba(185,121,120,.18);
+  border-radius:50%;
+  transform:rotate(-7deg);
+}
+.opening-decoration:after{
+  content:"";
+  position:absolute;inset:7%;
+  border:1px solid rgba(119,134,117,.13);
+  border-radius:50%;
+}
+.opening-content{position:relative;z-index:2;max-width:760px}
+.small-label{
+  font-family:"DM Sans",sans-serif;
+  font-size:10px;
+  letter-spacing:5px;
+  text-transform:uppercase;
+  color:var(--soft);
+  margin-bottom:35px;
+}
+.opening-line{
+  font-size:clamp(35px,5.7vw,67px);
+  line-height:1.08;
+  font-weight:400;
+  margin:0;
+}
+.opening-line em{font-style:italic;color:var(--rose)}
+.divider{
+  display:flex;align-items:center;gap:13px;
+  width:170px;margin:36px auto 0;
+  color:var(--rose2);
+}
+.divider:before,.divider:after{
+  content:"";height:1px;flex:1;background:currentColor;
+}
+.divider span{font-size:15px}
+.open-btn{
+  margin-top:42px;
+  display:inline-flex;flex-direction:column;align-items:center;
+  border:0;background:none;cursor:pointer;color:var(--soft);
+  font-family:"DM Sans",sans-serif;font-size:10px;
+  letter-spacing:3px;text-transform:uppercase;
+}
+.open-circle{
+  margin-top:14px;width:52px;height:52px;border-radius:50%;
+  border:1px solid rgba(185,121,120,.45);
+  display:grid;place-items:center;font-size:19px;color:var(--rose);
+  transition:.4s ease;
+}
+.open-btn:hover .open-circle{
+  background:var(--rose);color:white;transform:translateY(5px);
+  box-shadow:0 12px 25px rgba(185,121,120,.22);
+}
+
+/* Letter */
+.letter-wrap{
+  width:min(920px,94%);
+  margin:auto;
+  padding:60px 0 100px;
+}
+.letter-paper{
+  position:relative;
+  background:rgba(255,250,245,.91);
+  border:1px solid rgba(185,121,120,.14);
+  border-radius:32px;
+  box-shadow:0 35px 100px rgba(74,56,46,.13);
+  overflow:hidden;
+}
+.letter-paper:before{
+  content:"";
+  position:absolute;inset:13px;
+  border:1px solid rgba(201,164,106,.14);
+  border-radius:23px;
+  pointer-events:none;
+}
+.top-ornament{
+  height:155px;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+}
+.top-ornament .line{
+  width:110px;height:1px;background:var(--rose2);
+}
+.top-ornament .ornament{
+  margin:0 17px;color:var(--rose);font-size:24px;
+}
+.content{
+  padding:0 clamp(30px,8vw,92px) 50px;
+  position:relative;z-index:1;
+}
+.eyebrow{
+  text-align:center;
+  font-family:"DM Sans",sans-serif;
+  font-size:9px;letter-spacing:5px;
+  color:var(--rose);text-transform:uppercase;
+  margin-bottom:13px;
+}
+h1{
+  text-align:center;
+  font-size:clamp(45px,7vw,78px);
+  font-weight:400;line-height:.95;
+  margin:0 0 55px;
+}
+.letter p{
+  font-size:clamp(18px,2.15vw,21px);
+  line-height:1.85;
+  margin:0 0 28px;
+}
+.quote{
+  margin:48px 0;
+  padding:30px 30px;
+  text-align:center;
+  position:relative;
+  color:#756861;
+  font-size:clamp(21px,2.8vw,27px);
+  line-height:1.5;
+  font-style:italic;
+}
+.quote:before,.quote:after{
+  content:"";
+  position:absolute;
+  left:50%;transform:translateX(-50%);
+  width:80px;height:1px;background:var(--rose2);
+}
+.quote:before{top:0}.quote:after{bottom:0}
+.quote small{
+  font-family:"DM Sans",sans-serif;
+  font-size:9px;letter-spacing:2px;
+  color:var(--soft);font-style:normal;
+}
+.closing{
+  margin-top:48px;padding-top:38px;
+  border-top:1px solid rgba(64,58,55,.1);
+}
+.name{
+  color:var(--rose);
+  font-size:clamp(25px,3.4vw,34px);
+  line-height:1.25;
+}
+
+/* Bouquet — softer, more natural */
+.bouquet-section{
+  margin-top:65px;
+  text-align:center;
+}
+.bouquet-title{
+  font-family:"Parisienne",cursive;
+  color:var(--rose);
+  font-size:32px;
+  margin-bottom:5px;
+}
+.bouquet-sub{
+  font-family:"DM Sans",sans-serif;
+  color:var(--soft);
+  font-size:9px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+.bouquet{
+  position:relative;
+  width:min(650px,100%);
+  height:455px;
+  margin:8px auto 0;
+}
+.flowers{position:absolute;inset:0}
+
+/* soft kraft / ivory wrapping */
+.wrap-back{
+  position:absolute;
+  left:50%;bottom:18px;
+  transform:translateX(-50%);
+  width:410px;height:255px;
+  background:
+    linear-gradient(115deg,rgba(255,255,255,.52),transparent 42%),
+    linear-gradient(165deg,#eee5da,#ddd1c4);
+  clip-path:polygon(10% 0,90% 0,100% 100%,0 100%);
+  filter:drop-shadow(0 20px 15px rgba(66,53,44,.12));
+}
+.wrap-back:after{
+  content:"";
+  position:absolute;left:50%;top:0;
+  width:1px;height:100%;
+  background:rgba(130,110,92,.10);
+  transform:rotate(7deg);
+}
+.wrap-front{
+  position:absolute;
+  left:50%;bottom:0;
+  transform:translateX(-50%);
+  width:350px;height:218px;
+  background:
+    linear-gradient(75deg,rgba(255,255,255,.55),transparent 43%),
+    #f3eae1;
+  clip-path:polygon(4% 0,96% 0,77% 100%,23% 100%);
+  z-index:18;
+}
+.wrap-fold{
+  position:absolute;
+  left:50%;bottom:0;
+  transform:translateX(-50%);
+  width:170px;height:205px;
+  background:rgba(255,255,255,.20);
+  clip-path:polygon(50% 0,100% 100%,0 100%);
+  z-index:19;
+}
+.ribbon{
+  position:absolute;
+  left:50%;bottom:63px;
+  transform:translateX(-50%);
+  width:105px;height:10px;
+  background:#c9908d;
+  border-radius:10px;
+  z-index:30;
+  box-shadow:0 3px 8px rgba(100,70,65,.12);
+}
+.ribbon:before,.ribbon:after{
+  content:"";
+  position:absolute;top:-7px;
+  width:52px;height:40px;
+  border:4px solid #c9908d;
+  border-radius:60% 50% 20% 60%;
+}
+.ribbon:before{right:61px;transform:rotate(-25deg)}
+.ribbon:after{left:61px;transform:scaleX(-1) rotate(-25deg)}
+
+.flower{
+  position:absolute;
+  left:50%;bottom:116px;
+  width:26px;height:280px;
+  transform-origin:bottom center;
+  z-index:10;
+}
+.stem{
+  position:absolute;left:12px;bottom:0;
+  width:2px;height:var(--h);
+  background:linear-gradient(to top,#5d705b,#899a80);
+  border-radius:2px;
+}
+.leaf{
+  position:absolute;width:25px;height:11px;
+  background:#7d9077;
+  border-radius:100% 0 100% 0;
+  opacity:.92;
+}
+.leaf.l{left:-9px;bottom:var(--lb);transform:rotate(-25deg)}
+.leaf.r{left:10px;bottom:var(--rb);transform:scaleX(-1) rotate(-25deg)}
+
+.bloom{
+  position:absolute;left:0;
+  bottom:calc(var(--h) - 7px);
+  width:26px;height:26px;
+}
+.petal{
+  position:absolute;
+  left:8px;top:3px;
+  width:11px;height:18px;
+  border-radius:65% 65% 48% 48%;
+  background:var(--pc);
+  transform-origin:50% 90%;
+  box-shadow:0 1px 2px rgba(90,60,55,.08);
+}
+.p1{transform:rotate(0deg) translateY(-5px)}
+.p2{transform:rotate(72deg) translateY(-5px)}
+.p3{transform:rotate(144deg) translateY(-5px)}
+.p4{transform:rotate(216deg) translateY(-5px)}
+.p5{transform:rotate(288deg) translateY(-5px)}
+.center{
+  position:absolute;left:9px;top:10px;
+  width:7px;height:7px;border-radius:50%;
+  background:#d3a05f;z-index:2;
+}
+.bouquet-number{
+  position:absolute;left:50%;bottom:90px;
+  transform:translateX(-50%);
+  z-index:31;
+  font-family:"DM Sans",sans-serif;
+  font-size:8px;letter-spacing:3px;
+  color:#9c8d80;
+}
+.petal-float{
+  position:absolute;width:6px;height:10px;
+  background:#d9aaa3;opacity:.35;
+  border-radius:80% 10% 80% 10%;
+  animation:drift 6s ease-in-out infinite;
+}
+@keyframes drift{
+  0%,100%{transform:translateY(0) rotate(10deg)}
+  50%{transform:translateY(-14px) rotate(30deg)}
+}
+
+@media(max-width:600px){
+  .opening-decoration{inset:10% 1%}
+  .letter-wrap{padding:25px 0 60px}
+  .letter-paper{border-radius:23px}
+  .top-ornament{height:105px}
+  .content{padding-left:25px;padding-right:25px}
+  .letter p{line-height:1.78}
+  .bouquet{height:385px}
+  .wrap-back{width:330px;height:205px}
+  .wrap-front{width:285px;height:180px}
+  .flower{bottom:98px;height:235px}
+  .bouquet-number{bottom:72px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+
+<body>
+<div class="deck" id="deck">
+
+<section class="slide" id="opening">
+  <div class="opening-inner">
+    <div class="opening-decoration"></div>
+    <div class="opening-content">
+      <div class="small-label">a little something for you</div>
+      <p class="opening-line">
+        Buat orang yang mungkin <em>gapernah sadar</em> kalo kehadirannya ternyata berarti sejauh ini
+      </p>
+      <div class="divider"><span>✦</span></div>
+      <button class="open-btn" onclick="openLetter()">
+        lanjut
+        <span class="open-circle">↓</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="letter">
+  <div class="letter-wrap">
+    <div class="letter-paper">
+      <div class="top-ornament">
+        <span class="line"></span><span class="ornament">❦</span><span class="line"></span>
+      </div>
+
+      <div class="content letter">
+        <div class="eyebrow">21st birthday</div>
+        <h1>Untuk kamu.</h1>
+
+        <p>Hari ini kamu bertambah satu tahun, seneng rasanya liat orang yang aku kenal tambah dewasa, tambah pengalaman, tambah wawasan, dan bertumbuh sejauh ini.</p>
+
+        <p>21 Tahun pasti punya sejarah yang panjang dan berat, sedangkan aku baru kenal kamu sekitar dua tahun, mungkin aku gatau gimana kamu ngelewatin 19 tahun itu, tapi dari apa yang aku liat sekarang, dari apa yang pernah kamu ceritain, aku udah cukup tau kalo kamu ga gampang jalanin itu, dan dari situ juga aku bangga sama kamu.</p>
+
+        <p>Banyak hal baik yang aku liat di diri kamu, dan mungkin hal itu gaada di kebanyakan orang. Cara kamu menghadapi sesuatu, cara kamu peduli sama orang lain, cara kamu tetep jalan meskipun mungkin sebenernya kamu juga lagi capek, dan hal hal kecil yang mungkin menurut kamu biasa aja, tapi ternyata bisa berarti buat orang lain.</p>
+
+        <p>Mungkin kamu sendiri ga sadar kalo ada banyak hal dari diri kamu yang layak untuk dihargai.</p>
+
+        <p>Dan salah satu hal yang aku suka dari kamu, kamu ga harus selalu berusaha jadi seseorang yang luar biasa buat bisa berarti. Kadang cukup jadi diri kamu sendiri, ngobrol kaya biasa, cerita hal hal random, atau sekedar hadir, itu udah cukup buat bikin hari seseorang jadi sedikit lebih baik.</p>
+
+        <p>Aku gatau sejak kapan tepatnya, tapi mungkin ada satu titik di mana kamu ga lagi cuma jadi seseorang yang aku kenal, kamu jadi seseorang yang aku perhatiin keberadaannya.</p>
+
+        <p>Seseorang yang kalo lagi punya kabar baik aku ikut seneng, dan kalo lagi punya hari yang ga baik, ada bagian kecil dari diriku yang berharap kamu baik baik aja.</p>
+
+        <div class="quote">
+          “It is only with the heart that one can see rightly.”
+          <br><small>THE LITTLE PRINCE</small>
+        </div>
+
+        <p>Mungkin emang ada beberapa hal yang gabisa dijelasin pake logika.</p>
+
+        <p>Mungkin kita bakalan tetap kaya sekarang, saling cerita, saling bercanda, saling mengganggu, dan saling ada ketika dibutuhkan, mungkin juga suatu hari nanti semuanya berubah.</p>
+
+        <p>tapi seengganya, ada satu kesempatan ini buat ngasih tau kalo aku bangga sama kamu, atas semua hal yang kamu lakuin, baik itu besar, maupun kecil.</p>
+
+        <p>semoga di tahun tahun berikutnya, kamu bisa nemuin lebih banyak alasan untuk bahagia daripada alasan untuk menyerah.</p>
+
+        <div class="closing">
+          <p class="name">Selamat ulang tahun, Arteta Zahira Rahmadhani Hadiputri.</p>
+          <p>Semoga di umur 21 ini kamu makin mengenal dirimu sendiri, makin deket sama hal hal yang kamu impikan, dan dipertemukan banyak hal baik yang selama ini mungkin belum kamu temuin.</p>
+        </div>
+
+        <div class="bouquet-section">
+          <div class="bouquet-title">for your 21st</div>
+          <div class="bouquet-sub">dua puluh satu tangkai, untuk dua puluh satu tahun</div>
+
+          <div class="bouquet" id="bouquet">
+            <div class="petal-float" style="left:15%;top:15%;animation-delay:.2s"></div>
+            <div class="petal-float" style="left:83%;top:27%;animation-delay:1.2s"></div>
+            <div class="petal-float" style="left:25%;top:37%;animation-delay:2s"></div>
+            <div class="petal-float" style="left:76%;top:12%;animation-delay:2.7s"></div>
+
+            <div class="wrap-back"></div>
+            <div class="wrap-front"></div>
+            <div class="wrap-fold"></div>
+            <div class="ribbon"></div>
+            <div class="bouquet-number">21 FLOWERS</div>
+            <div class="flowers" id="flowers"></div>
+          </div>
+        </div>
+
+        <button class="back" onclick="closeLetter()">↑ kembali</button>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<script>
+function openLetter(){
+  document.getElementById('deck').classList.add('show-letter');
+  setTimeout(()=>document.getElementById('letter').scrollTo({top:0}),350);
+}
+function closeLetter(){
+  document.getElementById('deck').classList.remove('show-letter');
+  document.getElementById('opening').scrollTo({top:0});
+}
+
+/* Tepat 21 bunga */
+const flowers=document.getElementById('flowers');
+const colors=[
+  ['#c88482','#dfa39d'],['#d29b78','#e6b798'],['#b77e88','#d49ba3'],
+  ['#ca8b8b','#e0aaa5'],['#bd8b76','#d8a58f'],['#cf9295','#e5b3b0']
+];
+
+for(let i=0;i<21;i++){
+  const f=document.createElement('div');
+  f.className='flower';
+
+  const center=50;
+  const x=center + (i-10)*4.35;
+  const curve=Math.abs(i-10)*1.6;
+  const h=170 + ((i*29)%62);
+  const tilt=(i-10)*1.15;
+  const [c1]=colors[i%colors.length];
+
+  f.style.left=`calc(${x}% - 12px)`;
+  f.style.height=`${h}px`;
+  f.style.transform=`translateX(-50%) rotate(${tilt}deg) translateY(${curve}px)`;
+
+  f.innerHTML=`
+    <div class="stem" style="--h:${h}px"></div>
+    <div class="leaf l" style="--lb:${45+(i%5)*15}px"></div>
+    <div class="leaf r" style="--rb:${75+(i%4)*17}px"></div>
+    <div class="bloom" style="--h:${h}px;--pc:${c1}">
+      <i class="petal p1"></i><i class="petal p2"></i><i class="petal p3"></i>
+      <i class="petal p4"></i><i class="petal p5"></i><i class="center"></i>
+    </div>`;
+  flowers.appendChild(f);
+}
+</script>
+</body>
+</html>
